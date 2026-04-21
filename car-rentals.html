@@ -153,12 +153,14 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore,collection,getDocs,addDoc,query,orderBy,serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-const fbCfg={  apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
+const firebaseConfig = {
+  apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
   authDomain: "sunway-kashmir.firebaseapp.com",
   projectId: "sunway-kashmir",
-  storageBucket: "sunway-kashmir.firebasestorage.app",
+  storageBucket: "sunway-kashmir.firebasestorage.app", // ⚠️ FIXED
   messagingSenderId: "1096140682595",
-  appId: "1:1096140682595:web:e7b8d969587a0cf7d84f56"};
+  appId: "1:1096140682595:web:e7b8d969587a0cf7d84f56"
+};
   
 const DEFAULT_CARS=[
   {name:'Sedan',sub:'Swift Dzire / Etios / Honda City',image:'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=700&q=80',icon:'fas fa-car-side',specs:['4 Passengers','2 Luggage Bags','AC + Music System','Local Driver'],price:'₹2,500',priceNote:'/day',featured:false},
