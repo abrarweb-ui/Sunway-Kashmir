@@ -201,7 +201,64 @@ body { visibility: visible; }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+#social-topbar {
+  background: #0f4c2a;
+  padding: 7px 0;
+  margin-top: var(--nav-height); /* navbar ke neeche push karega */
+}
 
+.topbar-wrap {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,.75);
+}
+
+.topbar-left a {
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+}
+
+.divider {
+  color: rgba(255,255,255,.3);
+  margin: 0 4px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-right a {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.75);
+  font-size: 12px;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.topbar-right a:hover {
+  background: #22c55e;
+  color: #fff;
+}
 /* ── BUTTONS ─────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
