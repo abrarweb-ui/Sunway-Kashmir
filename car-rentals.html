@@ -153,13 +153,12 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore,collection,getDocs,addDoc,query,orderBy,serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-const fbCfg={  apiKey: "AIzaSyADiBZe0V5gTnB89Ik1Bby2NDo-9nRxAHc",
-  authDomain: "insta-web-upload.firebaseapp.com",
-  databaseURL: "https://insta-web-upload-default-rtdb.firebaseio.com",
-  projectId: "insta-web-upload",
-  storageBucket: "insta-web-upload.firebasestorage.app",
-  messagingSenderId: "1092302887537",
-  appId: "1:1092302887537:web:a1bb7595868c84c30999d0"};
+const fbCfg={  apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
+  authDomain: "sunway-kashmir.firebaseapp.com",
+  projectId: "sunway-kashmir",
+  storageBucket: "sunway-kashmir.firebasestorage.app",
+  messagingSenderId: "1096140682595",
+  appId: "1:1096140682595:web:e7b8d969587a0cf7d84f56"};
 const DEFAULT_CARS=[
   {name:'Sedan',sub:'Swift Dzire / Etios / Honda City',image:'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=700&q=80',icon:'fas fa-car-side',specs:['4 Passengers','2 Luggage Bags','AC + Music System','Local Driver'],price:'₹2,500',priceNote:'/day',featured:false},
   {name:'SUV / Innova',sub:'Toyota Innova Crysta / Ertiga',image:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=700&q=80',icon:'fas fa-shuttle-van',specs:['6–7 Passengers','4 Luggage Bags','AC + Heater','Push-back Seats'],price:'₹3,800',priceNote:'/day',featured:true},
