@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Admin Panel – Sunway Kashmir Tour &amp; Travels</title>
+<title>Admin Panel – Aadi Tour &amp; Travel</title>
 <meta name="robots" content="noindex,nofollow"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
 :root{
-  --blue:#0f4c2a;--sky:#22c55e;--gold:#22c55e;--bg:#F0F4F8;--white:#fff;
+  --blue:#0A2540;--sky:#2EC4FF;--gold:#D4AF37;--bg:#F0F4F8;--white:#fff;
   --red:#ef4444;--green:#22c55e;--text:#1e293b;--t2:#64748b;
   --r:12px;--sh:0 4px 20px rgba(0,0,0,.08);--shm:0 8px 32px rgba(0,0,0,.12);
 }
@@ -21,32 +21,32 @@ ul{list-style:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 /* LOGIN */
-.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0f4c2a,#16a34a);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s,visibility .5s}
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,var(--blue),#0d3460);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s,visibility .5s}
 .login-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .login-card{background:var(--white);border-radius:20px;padding:48px 40px;width:100%;max-width:420px;box-shadow:0 30px 80px rgba(0,0,0,.3);text-align:center}
-.login-logo{font-family:Georgia,serif;font-size:52px;font-weight:700;color:#22c55e;line-height:1;margin-bottom:4px}
-.login-card h2{font-size:20px;font-weight:700;color:#fff;margin-bottom:4px}
+.login-logo{font-family:Georgia,serif;font-size:52px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px}
+.login-card h2{font-size:20px;font-weight:700;color:var(--blue);margin-bottom:4px}
 .login-card p{font-size:13px;color:var(--t2);margin-bottom:28px}
 .lf{margin-bottom:16px;text-align:left}
 .lf label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t2);margin-bottom:5px}
 .lf input{width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:.2s}
-.lf input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(34,197,94,.12)}
-.login-btn{width:100%;padding:13px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:700;font-size:14px;border-radius:99px;border:none;cursor:pointer;transition:.3s;margin-top:6px;font-family:'Poppins',sans-serif}
-.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,.4)}
+.lf input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(46,196,255,.12)}
+.login-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--gold),#c49b20);color:var(--blue);font-weight:700;font-size:14px;border-radius:99px;border:none;cursor:pointer;transition:.3s;margin-top:6px;font-family:'Poppins',sans-serif}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,175,55,.4)}
 .login-err{color:var(--red);font-size:12px;margin-top:8px;min-height:16px;text-align:center}
 
 /* LAYOUT */
 .admin-layout{display:flex;min-height:100vh}
-.sidebar{width:256px;background:#0f4c2a;color:#fff;flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .3s ease}
+.sidebar{width:256px;background:var(--blue);color:#fff;flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .3s ease}
 .sidebar.collapsed{transform:translateX(-256px)}
 .sb-head{padding:22px 20px 18px;border-bottom:1px solid rgba(255,255,255,.1)}
-.sb-logo{font-size:20px;font-weight:700;color:#22c55e;display:flex;align-items:center;gap:6px}
+.sb-logo{font-size:20px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:6px}
 .sb-tag{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
 .sb-nav{flex:1;padding:12px 0;overflow-y:auto}
 .nav-sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.3);padding:10px 20px 4px}
 .nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:500;color:rgba(255,255,255,.65);cursor:pointer;transition:.2s;border-left:3px solid transparent;user-select:none}
 .nav-item:hover{background:rgba(255,255,255,.06);color:#fff}
-.nav-item.active{background:rgba(255,255,255,.1);color:#fff;border-left-color:#22c55e}
+.nav-item.active{background:rgba(255,255,255,.1);color:#fff;border-left-color:var(--gold)}
 .nav-item i{width:17px;font-size:13px;text-align:center;flex-shrink:0}
 .sb-foot{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1)}
 .logout-btn{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.45);cursor:pointer;transition:.2s;background:none;border:none;font-family:'Poppins',sans-serif}
@@ -61,7 +61,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .toggle-btn:hover{background:#e2e8f0}
 .page-title{font-size:15px;font-weight:700;color:var(--text)}
 .tb-right{display:flex;align-items:center;gap:10px}
-.admin-badge{font-size:11px;font-weight:600;color:var(--sky);background:rgba(34,197,94,.1);padding:4px 12px;border-radius:99px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-badge{font-size:11px;font-weight:600;color:var(--sky);background:rgba(46,196,255,.1);padding:4px 12px;border-radius:99px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .view-site{font-size:12px;color:var(--t2);display:flex;align-items:center;gap:4px;text-decoration:none;transition:.2s}
 .view-site:hover{color:var(--sky)}
 .content{padding:24px}
@@ -89,30 +89,30 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .admin-table tr:hover td{background:#fafbfc}
 .thumb{width:52px;height:38px;border-radius:6px;object-fit:cover;border:2px solid #e2e8f0}
 .badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.4px}
-.badge-new{background:rgba(34,197,94,.15);color:#0077b6}
-.badge-pending{background:rgba(34,197,94,.15);color:#9a7d00}
+.badge-new{background:rgba(46,196,255,.15);color:#0077b6}
+.badge-pending{background:rgba(212,175,55,.15);color:#9a7d00}
 .badge-done{background:rgba(34,197,94,.15);color:#166534}
 .badge-confirmed{background:rgba(34,197,94,.15);color:#166534}
 .badge-cancelled{background:rgba(239,68,68,.15);color:#991b1b}
-.badge-popular{background:rgba(34,197,94,.12);color:#0077b6}
+.badge-popular{background:rgba(46,196,255,.12);color:#0077b6}
 .badge-honeymoon{background:rgba(233,30,99,.12);color:#880e4f}
-.badge-custom{background:rgba(34,197,94,.15);color:#9a7d00}
+.badge-custom{background:rgba(212,175,55,.15);color:#9a7d00}
 .badge-group{background:rgba(76,175,80,.12);color:#1b5e20}
 
 /* ACTION BTNS */
 .action-btns{display:flex;gap:5px;flex-wrap:wrap}
 .action-btn{width:28px;height:28px;border-radius:6px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:.2s;text-decoration:none}
-.btn-edit{background:rgba(34,197,94,.1);color:var(--sky)}.btn-edit:hover{background:var(--sky);color:#fff}
+.btn-edit{background:rgba(46,196,255,.1);color:var(--sky)}.btn-edit:hover{background:var(--sky);color:#fff}
 .btn-del{background:rgba(239,68,68,.1);color:var(--red)}.btn-del:hover{background:var(--red);color:#fff}
-.btn-view{background:rgba(15,76,42,.08);color:#fff}.btn-view:hover{background:#0f4c2a;color:#fff}
+.btn-view{background:rgba(10,37,64,.08);color:var(--blue)}.btn-view:hover{background:var(--blue);color:#fff}
 .btn-approve{background:rgba(34,197,94,.1);color:var(--green)}.btn-approve:hover{background:var(--green);color:#fff}
 .btn-wa-a{background:rgba(37,211,102,.1);color:#25D366}.btn-wa-a:hover{background:#25D366;color:#fff}
 
 /* TOP BTNS */
-.btn-add{display:inline-flex;align-items:center;gap:6px;background:#0f4c2a;color:#fff;font-size:13px;font-weight:600;padding:9px 18px;border-radius:99px;border:none;cursor:pointer;transition:.2s;font-family:'Poppins',sans-serif}
+.btn-add{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-size:13px;font-weight:600;padding:9px 18px;border-radius:99px;border:none;cursor:pointer;transition:.2s;font-family:'Poppins',sans-serif}
 .btn-add:hover{background:#0d3460;transform:translateY(-1px)}
-.btn-gold{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-size:13px;font-weight:700;padding:9px 20px;border-radius:99px;border:none;cursor:pointer;transition:.2s;font-family:'Poppins',sans-serif}
-.btn-gold:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(34,197,94,.35)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#c49b20);color:var(--blue);font-size:13px;font-weight:700;padding:9px 20px;border-radius:99px;border:none;cursor:pointer;transition:.2s;font-family:'Poppins',sans-serif}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(212,175,55,.35)}
 .btn-cancel{background:#f1f5f9;color:var(--t2);font-size:13px;font-weight:600;padding:9px 20px;border-radius:99px;border:none;cursor:pointer;transition:.2s;font-family:'Poppins',sans-serif}
 .btn-cancel:hover{background:#e2e8f0}
 
@@ -126,7 +126,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .mf{margin-bottom:13px}
 .mf label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t2);margin-bottom:5px}
 .mf input,.mf select,.mf textarea{width:100%;padding:10px 13px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:'Poppins',sans-serif;outline:none;transition:.2s;color:var(--text);background:#fff;-webkit-appearance:none;appearance:none}
-.mf input:focus,.mf select:focus,.mf textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(34,197,94,.1)}
+.mf input:focus,.mf select:focus,.mf textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(46,196,255,.1)}
 .mf textarea{resize:vertical}
 .mf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .modal-foot{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid #f1f5f9}
@@ -139,9 +139,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .ag-item{position:relative;border-radius:10px;overflow:hidden;background:#e2e8f0;aspect-ratio:4/3;cursor:pointer}
 .ag-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .ag-item:hover img{transform:scale(1.06)}
-.ag-actions{position:absolute;inset:0;background:rgba(15,76,42,.72);display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.ag-actions{position:absolute;inset:0;background:rgba(10,37,64,.72);display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px}
 .ag-item:hover .ag-actions{display:flex}
-.ag-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(15,76,42,.8);color:#fff;font-size:10px;padding:4px 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ag-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(10,37,64,.8);color:#fff;font-size:10px;padding:4px 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* SEARCH */
 .table-search{padding:8px 14px 8px 36px;border:1.5px solid #e2e8f0;border-radius:99px;font-size:13px;font-family:'Poppins',sans-serif;outline:none;background:#f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") 10px 50% / 15px no-repeat;transition:.2s;width:220px}
@@ -151,7 +151,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .status-sel{border:1.5px solid #e2e8f0;border-radius:6px;padding:4px 8px;font-size:11px;font-family:'Poppins',sans-serif;outline:none;background:#fff;cursor:pointer}
 
 /* TOAST */
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(8px);background:#0f4c2a;color:#fff;padding:10px 22px;border-radius:99px;font-size:13px;font-weight:500;z-index:9999;opacity:0;pointer-events:none;transition:all .35s;box-shadow:var(--shm)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--blue);color:#fff;padding:10px 22px;border-radius:99px;font-size:13px;font-weight:500;z-index:9999;opacity:0;pointer-events:none;transition:all .35s;box-shadow:var(--shm)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.ok{background:#14532d}.toast.err{background:#7f1d1d}
 
@@ -186,8 +186,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <div class="login-card">
     <div class="login-logo">A</div>
     <h2>Admin Panel</h2>
-    <p>Sunway Kashmir Tour &amp; Travels — Secure Access Only</p>
-    <div class="lf"><label>Email Address</label><input type="email" id="loginEmail" placeholder="admin@sunwaykashmirtours.in" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <p>Aadi Tour &amp; Travel — Secure Access Only</p>
+    <div class="lf"><label>Email Address</label><input type="email" id="loginEmail" placeholder="admin@aaditourandtravel.com" onkeydown="if(event.key==='Enter')doLogin()"/></div>
     <div class="lf"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
     <button class="login-btn" id="loginBtn" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Sign In to Dashboard</button>
     <p class="login-err" id="loginErr"></p>
@@ -198,7 +198,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <div class="sb-head">
-    <div class="sb-logo"><span style="color:#22c55e">A</span>adi Admin</div>
+    <div class="sb-logo"><span style="color:var(--gold)">A</span>adi Admin</div>
     <div class="sb-tag">Tour &amp; Travel Management</div>
   </div>
   <nav class="sb-nav">
@@ -238,8 +238,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <!-- DASHBOARD -->
     <div class="section-panel active" id="sec-dashboard">
       <div class="stats-row">
-        <div class="stat-card"><div class="stat-icon" style="background:rgba(34,197,94,.12)"><i class="fas fa-calendar-check" style="color:var(--sky)"></i></div><div class="stat-info"><strong id="cntB">—</strong><span>Bookings</span></div></div>
-        <div class="stat-card"><div class="stat-icon" style="background:rgba(34,197,94,.12)"><i class="fas fa-envelope" style="color:#22c55e"></i></div><div class="stat-info"><strong id="cntE">—</strong><span>Enquiries</span></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:rgba(46,196,255,.12)"><i class="fas fa-calendar-check" style="color:var(--sky)"></i></div><div class="stat-info"><strong id="cntB">—</strong><span>Bookings</span></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:rgba(212,175,55,.12)"><i class="fas fa-envelope" style="color:var(--gold)"></i></div><div class="stat-info"><strong id="cntE">—</strong><span>Enquiries</span></div></div>
         <div class="stat-card"><div class="stat-icon" style="background:rgba(34,197,94,.12)"><i class="fas fa-mountain" style="color:var(--green)"></i></div><div class="stat-info"><strong id="cntT">—</strong><span>Tours</span></div></div>
         <div class="stat-card"><div class="stat-icon" style="background:rgba(239,68,68,.12)"><i class="fas fa-images" style="color:var(--red)"></i></div><div class="stat-info"><strong id="cntG">—</strong><span>Gallery</span></div></div>
       </div>
@@ -252,7 +252,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </div>
       <div class="dash-grid">
         <div class="dash-card"><h4><i class="fas fa-calendar-check" style="color:var(--sky);margin-right:6px"></i>Recent Bookings</h4><div id="dashB"><p style="font-size:13px;color:var(--t2)">Loading…</p></div></div>
-        <div class="dash-card"><h4><i class="fas fa-envelope" style="color:#22c55e;margin-right:6px"></i>Recent Enquiries</h4><div id="dashE"><p style="font-size:13px;color:var(--t2)">Loading…</p></div></div>
+        <div class="dash-card"><h4><i class="fas fa-envelope" style="color:var(--gold);margin-right:6px"></i>Recent Enquiries</h4><div id="dashE"><p style="font-size:13px;color:var(--t2)">Loading…</p></div></div>
       </div>
     </div>
 
@@ -302,21 +302,21 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="section-panel" id="sec-settings">
       <h3 style="font-size:17px;font-weight:700;margin-bottom:18px">Site Settings</h3>
       <div class="settings-card">
-        <div class="mf"><label>Business Name</label><input id="sBiz" value="Sunway Kashmir Tour &amp; Travels"/></div>
+        <div class="mf"><label>Business Name</label><input id="sBiz" value="Aadi Tour &amp; Travel"/></div>
         <div class="mf-row">
-          <div class="mf"><label>Primary Phone</label><input id="sP1" value="+91 9018284105"/></div>
-          <div class="mf"><label>Secondary Phone</label><input id="sP2" value="+91 9469150408"/></div>
+          <div class="mf"><label>Primary Phone</label><input id="sP1" value="+91 9596368558"/></div>
+          <div class="mf"><label>Secondary Phone</label><input id="sP2" value="+91 8700116855"/></div>
         </div>
-        <div class="mf"><label>Email</label><input id="sEmail" value="sunwaykashmirtravel@gmail.com"/></div>
-        <div class="mf"><label>WhatsApp Number (digits only)</label><input id="sWA" value="919018284105"/></div>
-        <div class="mf"><label>Address</label><textarea id="sAddr" rows="2">Shalimar, Srinagar, Srinagar, J&K – 190011</textarea></div>
+        <div class="mf"><label>Email</label><input id="sEmail" value="aaditourandtravel121@gmail.com"/></div>
+        <div class="mf"><label>WhatsApp Number (digits only)</label><input id="sWA" value="919596368558"/></div>
+        <div class="mf"><label>Address</label><textarea id="sAddr" rows="2">NH44, Near Saffron Town, Lethipora, Pampore, J&K – 192122</textarea></div>
         <div class="mf-row">
-          <div class="mf"><label>Facebook URL</label><input id="sFB" value="https://www.facebook.com/share/1DRUL5MEDe/"/></div>
-          <div class="mf"><label>Instagram URL</label><input id="sIG" value="https://www.instagram.com/sunway_kashmir_travel"/></div>
+          <div class="mf"><label>Facebook URL</label><input id="sFB" value="https://www.facebook.com/profile.php?id=61578478771649"/></div>
+          <div class="mf"><label>Instagram URL</label><input id="sIG" value="https://www.instagram.com/aadi_travel_world"/></div>
         </div>
         <div class="mf-row">
-          <div class="mf"><label>YouTube URL</label><input id="sYT" value="https://youtube.com/@sunwaykashmirtravels"/></div>
-          <div class="mf"><label>MakeMeTop Profile URL</label><input id="sMMT" value="https://makemetop.in/?biz=PNwWM0xLHR3mI6eFS8WC"/></div>
+          <div class="mf"><label>YouTube URL</label><input id="sYT" value="https://youtube.com/@aaditourandtravel"/></div>
+          <div class="mf"><label>MakeMeTop Profile URL</label><input id="sMMT" value="https://makemetop.in/?biz=41fdfe7OZyc2dCK8COnq"/></div>
         </div>
         <button class="btn-gold" onclick="saveSettings()"><i class="fas fa-save"></i> Save Settings</button>
       </div>
@@ -429,7 +429,7 @@ import { getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged }
 
 // ── FIREBASE CONFIG ──────────────────────────────────────
 const fbCfg = {
-   apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
+  apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
   authDomain: "sunway-kashmir.firebaseapp.com",
   projectId: "sunway-kashmir",
   storageBucket: "sunway-kashmir.firebasestorage.app",
@@ -560,7 +560,7 @@ async function loadTours(){
     <td style="font-weight:600;max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.title||'—'}</td>
     <td><span class="badge ${bMap[t.category]||'badge-popular'}">${t.category||'—'}</span></td>
     <td style="color:var(--t2);white-space:nowrap">${t.duration||'—'}</td>
-    <td style="font-weight:600;color:#fff">${t.price||'—'}</td>
+    <td style="font-weight:600;color:var(--blue)">${t.price||'—'}</td>
     <td style="color:var(--t2)">${t.order||1}</td>
     <td><div class="action-btns">
       <button class="action-btn btn-edit" onclick="openTourModal('${t.id}')" title="Edit"><i class="fas fa-edit"></i></button>
@@ -649,7 +649,7 @@ async function loadVehicles(){
   tb.innerHTML=vehiclesCache.map(v2=>`<tr>
     <td>${v2.image?`<img src="${v2.image}" class="thumb" onerror="this.style.display='none'" alt=""/>`:'—'}</td>
     <td style="font-weight:600">${v2.name||'—'}</td><td style="color:var(--t2)">${v2.sub||'—'}</td>
-    <td style="font-weight:600;color:#fff">${v2.price||'—'}</td>
+    <td style="font-weight:600;color:var(--blue)">${v2.price||'—'}</td>
     <td>${v2.featured?'<span class="badge badge-confirmed">Yes</span>':'<span class="badge">No</span>'}</td>
     <td style="color:var(--t2)">${v2.order||1}</td>
     <td><div class="action-btns"><button class="action-btn btn-edit" onclick="openVehicleModal('${v2.id}')"><i class="fas fa-edit"></i></button><button class="action-btn btn-del" onclick="delDoc('vehicles','${v2.id}',loadVehicles)"><i class="fas fa-trash"></i></button></div></td>
