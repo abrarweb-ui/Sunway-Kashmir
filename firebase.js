@@ -1,11 +1,11 @@
 // =============================================
-// AADI TOUR & TRAVEL — Firebase Config & Utils
+// SUNWAY KASHMIR TOUR & TRAVELS — Firebase Config & Utils
 // =============================================
 
 // 🔥 REPLACE THESE WITH YOUR FIREBASE PROJECT DETAILS
 // Go to: https://console.firebase.google.com → Your Project → Project Settings → Web App
 const firebaseConfig = {
-  apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
+apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
   authDomain: "sunway-kashmir.firebaseapp.com",
   projectId: "sunway-kashmir",
   storageBucket: "sunway-kashmir.firebasestorage.app",
@@ -132,12 +132,12 @@ export function renderFooter() {
         <div class="footer-col">
           <a href="index.html" class="nav-logo"><span class="logo-a">A</span><span class="logo-text">adi Tour & Travel</span></a>
           <p>Your trusted partner for unforgettable Kashmir journeys. Licensed, verified & loved by travellers.</p>
-          <a href="https://makemetop.in/?biz=41fdfe7OZyc2dCK8COnq" target="_blank" class="verified-badge"><i class="fas fa-certificate"></i> Verified on MakeMeTop</a>
+          <a href="https://makemetop.in/?biz=PNwWM0xLHR3mI6eFS8WC" target="_blank" class="verified-badge"><i class="fas fa-certificate"></i> Verified on MakeMeTop</a>
           <div class="footer-socials">
-            <a href="https://www.facebook.com/profile.php?id=61578478771649" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/aadi_travel_world" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://youtube.com/@aaditourandtravel" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://wa.me/919596368558" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/share/1DRUL5MEDe/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/sunway_kashmir_travel" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/@sunwaykashmirtravels" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://wa.me/919018284105" target="_blank"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
         <div class="footer-col">
@@ -164,16 +164,16 @@ export function renderFooter() {
         <div class="footer-col">
           <h4>Contact Us</h4>
           <ul>
-            <li><i class="fas fa-phone-alt"></i><a href="tel:+919596368558">+91 9596368558</a></li>
-            <li><i class="fas fa-phone-alt"></i><a href="tel:+918700116855">+91 8700116855</a></li>
-            <li><i class="fas fa-envelope"></i><a href="mailto:aaditourandtravel121@gmail.com">aaditourandtravel121@gmail.com</a></li>
-            <li><i class="fas fa-map-marker-alt"></i><span>NH44, Lethipora, Pampore, J&K – 192122</span></li>
+            <li><i class="fas fa-phone-alt"></i><a href="tel:+919018284105">+91 9018284105</a></li>
+            <li><i class="fas fa-phone-alt"></i><a href="tel:+919469150408">+91 9469150408</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:sunwaykashmirtravel@gmail.com">sunwaykashmirtravel@gmail.com</a></li>
+            <li><i class="fas fa-map-marker-alt"></i><span>Shalimar, Srinagar, J&K – 190011</span></li>
           </ul>
         </div>
       </div>
     </div></div>
     <div class="footer-bottom"><div class="container">
-      <p>© ${new Date().getFullYear()} Aadi Tour & Travel. All rights reserved.</p>
+      <p>© ${new Date().getFullYear()} Sunway Kashmir Tour & Travels. All rights reserved.</p>
       <p class="powered">Powered by <a href="https://makemetop.in" target="_blank">MakeMeTop</a></p>
     </div></div>
   </footer>`;
@@ -212,7 +212,7 @@ export function loaderHTML() {
 // WA float + scroll top
 export function renderFloats() {
   document.body.insertAdjacentHTML('beforeend', `
-    <a href="https://wa.me/919596368558?text=Hi%20Aadi%20Tour%20%26%20Travel!%20I%20want%20to%20enquire%20about%20a%20tour." target="_blank" class="wa-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Chat with us!</span></a>
+    <a href="https://wa.me/919018284105?text=Hi%20Sunway%20Kashmir%20Tour%20%26%20Travels!%20I%20want%20to%20enquire%20about%20a%20tour." target="_blank" class="wa-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Chat with us!</span></a>
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></button>
     <div class="toast" id="globalToast"></div>
   `);
