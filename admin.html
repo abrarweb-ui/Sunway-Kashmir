@@ -184,7 +184,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- LOGIN -->
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
-    <div class="login-logo">A</div>
+    <div class="login-logo">S</div>
     <h2>Admin Panel</h2>
     <p>Aadi Tour &amp; Travel — Secure Access Only</p>
     <div class="lf"><label>Email Address</label><input type="email" id="loginEmail" placeholder="admin@aaditourandtravel.com" onkeydown="if(event.key==='Enter')doLogin()"/></div>
@@ -198,8 +198,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <div class="sb-head">
-    <div class="sb-logo"><span style="color:var(--gold)">A</span>adi Admin</div>
-    <div class="sb-tag">Tour &amp; Travel Management</div>
+    <div class="sb-logo"><span style="color:var(--gold)">A</span>unway Admin</div>
+    <div class="sb-tag">Sunway Kashmir Tour &amp; Travels</div>
   </div>
   <nav class="sb-nav">
     <div class="nav-sec">Overview</div>
@@ -422,7 +422,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore,collection,addDoc,getDocs,doc,updateDoc,deleteDoc,query,orderBy,serverTimestamp,limit }
+import { getFirestore,collection,addDoc,getDocs,doc,updateDoc,deleteDoc,serverTimestamp }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -532,14 +532,20 @@ async function loadDashboard(){
   // Recent bookings
   const dbe=document.getElementById('dashB');
   try{
-    const s=await getDocs(query(collection(db,'bookings'),orderBy('createdAt','desc'),limit(6)));
+    const allBSnap=await getDocs(collection(db,'bookings'));
+    const allBDocs=[]; allBSnap.forEach(d=>allBDocs.push({id:d.id,...d.data()}));
+    allBDocs.sort((a,b)=>{const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);const tb2=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);return tb2-ta;});
+    const s={empty:allBDocs.length===0,docs:allBDocs.slice(0,6).map(d=>({data:()=>d}))};
     if(s.empty){ dbe.innerHTML='<p style="font-size:13px;color:var(--t2)">No bookings yet.</p>'; }
     else{ dbe.innerHTML=s.docs.map(d=>{const b=d.data();return`<div class="dash-row"><span style="font-weight:600">${b.name||'—'}</span><span style="color:var(--t2)">${b.packageType||'—'}</span><span class="badge badge-${b.status||'pending'}">${b.status||'pending'}</span></div>`;}).join(''); }
   }catch{ dbe.innerHTML='<p style="font-size:13px;color:var(--t2)">Connect Firebase to load data.</p>'; }
   // Recent enquiries
   const dee=document.getElementById('dashE');
   try{
-    const s=await getDocs(query(collection(db,'enquiries'),orderBy('createdAt','desc'),limit(6)));
+    const allESnap=await getDocs(collection(db,'enquiries'));
+    const allEDocs=[]; allESnap.forEach(d=>allEDocs.push({id:d.id,...d.data()}));
+    allEDocs.sort((a,b)=>{const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);const tb2=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);return tb2-ta;});
+    const s={empty:allEDocs.length===0,docs:allEDocs.slice(0,6).map(d=>({data:()=>d}))};
     if(s.empty){ dee.innerHTML='<p style="font-size:13px;color:var(--t2)">No enquiries yet.</p>'; }
     else{ dee.innerHTML=s.docs.map(d=>{const e=d.data();return`<div class="dash-row"><span style="font-weight:600">${e.name||'—'}</span><span style="color:var(--t2)">${e.phone||'—'}</span><span class="badge badge-${e.status==='contacted'?'confirmed':'new'}">${e.status||'new'}</span></div>`;}).join(''); }
   }catch{ dee.innerHTML='<p style="font-size:13px;color:var(--t2)">Connect Firebase to load data.</p>'; }
@@ -550,8 +556,15 @@ let toursCache=[];
 async function loadTours(){
   const tb=document.getElementById('toursBody');
   tb.innerHTML='<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i></td></tr>';
-  try{ const s=await getDocs(query(collection(db,'tours'),orderBy('order','asc'))); toursCache=[]; s.forEach(d=>toursCache.push({id:d.id,...d.data()})); }
-  catch(e){ toursCache=[]; toast('Error loading tours: '+e.message,'err'); }
+  try{
+    const s=await getDocs(collection(db,'tours'));
+    toursCache=[];
+    s.forEach(d=>toursCache.push({id:d.id,...d.data()}));
+    toursCache.sort((a,b)=>(a.order||99)-(b.order||99));
+  } catch(e){
+    toursCache=[];
+    toast('Error loading tours: '+e.message,'err');
+  }
   document.getElementById('tCnt').textContent=`(${toursCache.length})`;
   if(!toursCache.length){ tb.innerHTML='<tr><td colspan="7" class="empty-td"><i class="fas fa-mountain"></i>No packages yet. Add your first tour!</td></tr>'; return; }
   const bMap={popular:'badge-popular',honeymoon:'badge-honeymoon',custom:'badge-custom',group:'badge-group'};
@@ -603,8 +616,14 @@ let galleryCache=[];
 async function loadGallery(){
   const grid=document.getElementById('agGrid');
   grid.innerHTML='<p style="padding:20px;color:var(--t2);font-size:13px"><i class="fas fa-spinner fa-spin"></i> Loading…</p>';
-  try{ const s=await getDocs(query(collection(db,'gallery'),orderBy('order','asc'))); galleryCache=[]; s.forEach(d=>galleryCache.push({id:d.id,...d.data()})); }
-  catch(e){ galleryCache=[]; }
+  try{
+    const s=await getDocs(collection(db,'gallery'));
+    galleryCache=[];
+    s.forEach(d=>galleryCache.push({id:d.id,...d.data()}));
+    galleryCache.sort((a,b)=>(a.order||99)-(b.order||99));
+  } catch(e){
+    galleryCache=[];
+  }
   document.getElementById('gCnt').textContent=`(${galleryCache.length})`;
   if(!galleryCache.length){ grid.innerHTML='<p style="padding:20px;color:var(--t2);font-size:13px">No images yet. Click "Add Image" to get started.</p>'; return; }
   grid.innerHTML=galleryCache.map(img=>`
@@ -643,8 +662,15 @@ let vehiclesCache=[];
 async function loadVehicles(){
   const tb=document.getElementById('vehiclesBody');
   tb.innerHTML='<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i></td></tr>';
-  try{ const s=await getDocs(query(collection(db,'vehicles'),orderBy('order','asc'))); vehiclesCache=[]; s.forEach(d=>vehiclesCache.push({id:d.id,...d.data()})); }
-  catch(e){ vehiclesCache=[]; }
+  try{
+    const s=await getDocs(collection(db,'vehicles'));
+    vehiclesCache=[];
+    s.forEach(d=>vehiclesCache.push({id:d.id,...d.data()}));
+    vehiclesCache.sort((a,b)=>(a.order||99)-(b.order||99));
+  } catch(e){
+    vehiclesCache=[];
+    toast('Fleet load error: '+e.message,'err');
+  }
   if(!vehiclesCache.length){ tb.innerHTML='<tr><td colspan="7" class="empty-td"><i class="fas fa-car"></i>No vehicles yet.</td></tr>'; return; }
   tb.innerHTML=vehiclesCache.map(v2=>`<tr>
     <td>${v2.image?`<img src="${v2.image}" class="thumb" onerror="this.style.display='none'" alt=""/>`:'—'}</td>
@@ -682,8 +708,20 @@ let testiCache=[];
 async function loadTestimonials(){
   const tb=document.getElementById('testimonialsBody');
   tb.innerHTML='<tr><td colspan="6" class="loading-td"><i class="fas fa-spinner fa-spin"></i></td></tr>';
-  try{ const s=await getDocs(query(collection(db,'testimonials'),orderBy('createdAt','desc'))); testiCache=[]; s.forEach(d=>testiCache.push({id:d.id,...d.data()})); }
-  catch(e){ testiCache=[]; }
+  try{
+    const s=await getDocs(collection(db,'testimonials'));
+    testiCache=[];
+    s.forEach(d=>testiCache.push({id:d.id,...d.data()}));
+    // Sort newest first — handle both Firestore Timestamp and missing field
+    testiCache.sort((a,b)=>{
+      const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);
+      const tb2=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);
+      return tb2-ta;
+    });
+  } catch(e){
+    testiCache=[];
+    toast('Testimonials load error: '+e.message,'err');
+  }
   if(!testiCache.length){ tb.innerHTML='<tr><td colspan="6" class="empty-td"><i class="fas fa-star"></i>No reviews yet.</td></tr>'; return; }
   tb.innerHTML=testiCache.map(t=>`<tr>
     <td style="font-weight:600">${t.name||'—'}</td><td style="color:var(--t2)">${t.location||'—'}</td>
@@ -726,8 +764,18 @@ let bookingsCache=[];
 async function loadBookings(){
   const tb=document.getElementById('bookingsBody');
   tb.innerHTML='<tr><td colspan="8" class="loading-td"><i class="fas fa-spinner fa-spin"></i></td></tr>';
-  try{ const s=await getDocs(query(collection(db,'bookings'),orderBy('createdAt','desc'))); bookingsCache=[]; s.forEach(d=>bookingsCache.push({id:d.id,...d.data()})); }
-  catch(e){ bookingsCache=[]; }
+  try{
+    const s=await getDocs(collection(db,'bookings'));
+    bookingsCache=[];
+    s.forEach(d=>bookingsCache.push({id:d.id,...d.data()}));
+    bookingsCache.sort((a,b)=>{
+      const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);
+      const tb2=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);
+      return tb2-ta;
+    });
+  } catch(e){
+    bookingsCache=[];
+  }
   document.getElementById('bCnt').textContent=`(${bookingsCache.length})`;
   renderBookings(bookingsCache);
 }
@@ -748,7 +796,7 @@ function renderBookings(data){
     </select></td>
     <td><div class="action-btns">
       <button class="action-btn btn-view" onclick="viewRecord(${JSON.stringify(b).replace(/'/g,"\\'")})" title="View"><i class="fas fa-eye"></i></button>
-      <a class="action-btn btn-wa-a" href="https://wa.me/${(b.phone||'').replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(b.name||'')}!%20Your%20Kashmir%20booking%20with%20Aadi%20Tour%20is%20confirmed." target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a class="action-btn btn-wa-a" href="https://wa.me/${(b.phone||'').replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(b.name||'')}!%20Your%20Kashmir%20booking%20with%20Sunway%20Kashmir%20Tours%20is%20confirmed." target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <button class="action-btn btn-del" onclick="delDoc('bookings','${b.id}',loadBookings)" title="Delete"><i class="fas fa-trash"></i></button>
     </div></td>
   </tr>`).join('');
@@ -763,8 +811,18 @@ let enquiriesCache=[];
 async function loadEnquiries(){
   const tb=document.getElementById('enquiriesBody');
   tb.innerHTML='<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i></td></tr>';
-  try{ const s=await getDocs(query(collection(db,'enquiries'),orderBy('createdAt','desc'))); enquiriesCache=[]; s.forEach(d=>enquiriesCache.push({id:d.id,...d.data()})); }
-  catch(e){ enquiriesCache=[]; }
+  try{
+    const s=await getDocs(collection(db,'enquiries'));
+    enquiriesCache=[];
+    s.forEach(d=>enquiriesCache.push({id:d.id,...d.data()}));
+    enquiriesCache.sort((a,b)=>{
+      const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);
+      const tb2=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);
+      return tb2-ta;
+    });
+  } catch(e){
+    enquiriesCache=[];
+  }
   document.getElementById('eCnt').textContent=`(${enquiriesCache.length})`;
   renderEnquiries(enquiriesCache);
 }
@@ -783,7 +841,7 @@ function renderEnquiries(data){
       <option value="done" ${e.status==='done'?'selected':''}>Done</option>
     </select></td>
     <td><div class="action-btns">
-      <a class="action-btn btn-wa-a" href="https://wa.me/${(e.phone||'').replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(e.name||'')}!%20Thanks%20for%20your%20enquiry%20at%20Aadi%20Tour%20%26%20Travel." target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a class="action-btn btn-wa-a" href="https://wa.me/${(e.phone||'').replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(e.name||'')}!%20Thanks%20for%20your%20enquiry%20at%20Sunway%20Kashmir%20Tour%20%26%20Travels." target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <button class="action-btn btn-view" onclick="viewRecord(${JSON.stringify(e).replace(/'/g,"\\'")})" title="View"><i class="fas fa-eye"></i></button>
       <button class="action-btn btn-del" onclick="delDoc('enquiries','${e.id}',loadEnquiries)" title="Delete"><i class="fas fa-trash"></i></button>
     </div></td>
@@ -799,8 +857,18 @@ let carCache=[];
 async function loadCarBookings(){
   const tb=document.getElementById('carBookingsBody');
   tb.innerHTML='<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i></td></tr>';
-  try{ const s=await getDocs(query(collection(db,'car_bookings'),orderBy('createdAt','desc'))); carCache=[]; s.forEach(d=>carCache.push({id:d.id,...d.data()})); }
-  catch(e){ carCache=[]; }
+  try{
+    const s=await getDocs(collection(db,'car_bookings'));
+    carCache=[];
+    s.forEach(d=>carCache.push({id:d.id,...d.data()}));
+    carCache.sort((a,b)=>{
+      const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);
+      const tb2=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);
+      return tb2-ta;
+    });
+  } catch(e){
+    carCache=[];
+  }
   if(!carCache.length){ tb.innerHTML='<tr><td colspan="7" class="empty-td"><i class="fas fa-car"></i>No car bookings yet.</td></tr>'; return; }
   tb.innerHTML=carCache.map(c=>`<tr>
     <td style="font-weight:600">${c.name||'—'}</td>
