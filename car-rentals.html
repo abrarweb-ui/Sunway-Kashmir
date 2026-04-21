@@ -169,7 +169,7 @@ const DEFAULT_CARS=[
 ];
 let cars=[...DEFAULT_CARS];
 let db=null;
-try{const app=initializeApp(fbCfg);db=getFirestore(app);const s=await getDocs(query(collection(db,'vehicles'),orderBy('order','asc')));if(!s.empty){cars=[];s.forEach(d=>cars.push(d.data()));}}catch(e){}
+try{const app=initializeApp(firebaseConfig);;db=getFirestore(app);const s=await getDocs(query(collection(db,'vehicles'),orderBy('order','asc')));if(!s.empty){cars=[];s.forEach(d=>cars.push(d.data()));}}catch(e){}
 const grid=document.getElementById('carsGrid');
 cars.forEach(c=>{
   const el=document.createElement('div');el.className='car reveal'+(c.featured?' car-feat':'');
