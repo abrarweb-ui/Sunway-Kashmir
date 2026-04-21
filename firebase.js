@@ -5,12 +5,12 @@
 // 🔥 REPLACE THESE WITH YOUR FIREBASE PROJECT DETAILS
 // Go to: https://console.firebase.google.com → Your Project → Project Settings → Web App
 const firebaseConfig = {
- apiKey: "AIzaSyBK3Y4k_LkoWX1AgJAVCOTWSCgIWeiC22o",
-  authDomain: "gopiz-356e7.firebaseapp.com",
-  projectId: "gopiz-356e7",
-  storageBucket: "gopiz-356e7.firebasestorage.app",
-  messagingSenderId: "921245628609",
-  appId: "1:921245628609:web:3b42a9ab2adb2a9c04bc40"
+  apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
+  authDomain: "sunway-kashmir.firebaseapp.com",
+  projectId: "sunway-kashmir",
+  storageBucket: "sunway-kashmir.firebasestorage.app",
+  messagingSenderId: "1096140682595",
+  appId: "1:1096140682595:web:e7b8d969587a0cf7d84f56"
 };
 
 // Initialize Firebase
