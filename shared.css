@@ -136,7 +136,17 @@ body { visibility: visible; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 16px; color: var(--white); letter-spacing: .3px;
 }
+.menu-logo {
+  width: 35px;
+  height: auto;
+  margin-right: 10px;
+}
 
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* Desktop nav links */
 .nav-links {
   display: flex; align-items: center; gap: 2px;
