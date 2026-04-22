@@ -133,19 +133,19 @@ body { visibility: visible; }
 }
 
 /* ✅ FIXED LOGO */
+/* Logo image */
+.logo-img {
+  height: 45px;        /* main size */
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Make sure logo + text align properly */
 .nav-logo {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-shrink: 0;
-  z-index: 1001;
-}
-
-/* Logo image */
-.logo-img {
-  height: 42px;
-  width: auto;
-  object-fit: contain;
 }
 
 /* Logo text */
