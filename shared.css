@@ -144,6 +144,14 @@ button { cursor: pointer; border: none; background: none; }
   font-weight: 700;
   color: white;
 }
+@media (max-width: 768px) {
+  .logo-text {
+    display: block !important;
+    font-size: 13px;
+    color: #fff;
+    line-height: 1.2;
+  }
+}
 /* Desktop nav links */
 .nav-links {
   display: flex; align-items: center; gap: 2px;
