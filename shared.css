@@ -139,13 +139,11 @@ button { cursor: pointer; border: none; background: none; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 30px; font-weight: 700; color: #4ade80; line-height: 1;
 }
-.logo-t { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: #fff; letter-spacing: .3px; }
 .logo-text {
-  color: #fff; font-size: 13px; font-weight: 700;
-  line-height: 1.25; max-width: 180px;
-  display: none; /* hidden by default, show via page-level CSS if needed */
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f4c2a;
 }
-
 /* Desktop nav links */
 .nav-links {
   display: flex; align-items: center; gap: 2px;
