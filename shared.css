@@ -281,6 +281,15 @@ body { visibility: visible; }
   background: #22c55e;
   color: #fff;
 }
+@media (max-width: 768px) {
+  .logo-img {
+    height: 36px;
+  }
+
+  .logo-text {
+    font-size: 13px;
+  }
+}
 /* ── BUTTONS ─────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
