@@ -128,13 +128,13 @@ body { visibility: visible; }
   display: flex; align-items: baseline; gap: 2px;
   flex-shrink: 0; z-index: 1001; position: relative;
 }
-.logo-a {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 34px; font-weight: 700; color: #4ade80; line-height: 1;
-}
-.logo-t {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px; color: var(--white); letter-spacing: .3px;
+.nav-logo {
+  display: flex;
+  align-items: center;   /* change from baseline → center */
+  gap: 10px;             /* increase spacing */
+  flex-shrink: 0;
+  z-index: 1001;
+  position: relative;
 }
 .menu-logo {
   width: 35px;
