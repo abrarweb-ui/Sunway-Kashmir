@@ -142,7 +142,7 @@ button { cursor: pointer; border: none; background: none; }
 .logo-text {
   font-size: 18px;
   font-weight: 700;
-  color: #0f4c2a;
+  color: white;
 }
 /* Desktop nav links */
 .nav-links {
