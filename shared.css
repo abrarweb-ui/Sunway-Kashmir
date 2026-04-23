@@ -201,15 +201,17 @@ button { cursor: pointer; border: none; background: none; }
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 .stb-inner {
-  max-width: 1220px; margin: 0 auto; padding: 0 22px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; flex-wrap: nowrap;
-  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;   /* ✅ FIX */
 }
 .stb-contact {
-  display: flex; align-items: center; gap: 14px;
-  font-size: 11.5px; color: rgba(255,255,255,.72);
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;   /* ✅ allows adjustment */
 }
 .stb-contact a {
   color: rgba(255,255,255,.82); text-decoration: none;
@@ -232,13 +234,21 @@ button { cursor: pointer; border: none; background: none; }
 }
 @media (max-width: 768px) {
   .stb-inner {
-    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .stb-contact {
-    flex-wrap: wrap;
-    gap: 6px;
+    justify-content: center;
+    gap: 8px;
     font-size: 10.5px;
+  }
+
+  .stb-contact a {
+    white-space: nowrap; /* keeps numbers clean */
+  }
+
+  .stb-sep {
+    display: none; /* cleaner mobile */
   }
 }
 /* ── BUTTONS ── */
