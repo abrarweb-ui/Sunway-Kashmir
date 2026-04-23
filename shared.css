@@ -230,7 +230,17 @@ button { cursor: pointer; border: none; background: none; }
 .stb-socials .tripadvisor-icon {
   width: 15px; height: 15px; object-fit: contain; border-radius: 2px;
 }
+@media (max-width: 768px) {
+  .stb-inner {
+    flex-wrap: wrap;
+  }
 
+  .stb-contact {
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 10.5px;
+  }
+}
 /* ── BUTTONS ── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
