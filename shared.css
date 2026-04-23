@@ -140,10 +140,12 @@ button { cursor: pointer; border: none; background: none; }
   font-size: 30px; font-weight: 700; color: #4ade80; line-height: 1;
 }
 .logo-t { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: #fff; letter-spacing: .3px; }
-.logo-text {
-  color: #fff; font-size: 13px; font-weight: 700;
-  line-height: 1.25; max-width: 180px;
-  display: none; /* hidden by default, show via page-level CSS if needed */
+.logo-text{
+  font-family: 'Great Vibes', cursive;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 /* Desktop nav links */
@@ -169,20 +171,65 @@ button { cursor: pointer; border: none; background: none; }
 .nav-cta:hover { background: #16a34a !important; transform: translateY(-1px) !important; }
 
 /* Hamburger */
-.hamburger {
-  display: none; flex-direction: column; justify-content: center;
-  align-items: center; gap: 5px; width: 40px; height: 40px;
-  cursor: pointer; background: none; border: none; padding: 4px;
-  flex-shrink: 0; z-index: 1001; position: relative;
+.hamburger{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  width:42px;
+  height:42px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  z-index:1100;
 }
-.hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: #fff; border-radius: 2px;
-  transition: transform .3s ease, opacity .3s ease; pointer-events: none;
+
+.hamburger span{
+  display:block;
+  width:24px;
+  height:3px;
+  background:#fff;
+  border-radius:10px;
+  transition:0.3s ease;
 }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px){
+  .hamburger{
+    display:flex !important;
+  }
+
+  .nav-links{
+    position:fixed;
+    top:60px;
+    left:-100%;
+    width:100%;
+    height:calc(100vh - 60px);
+    background:#0f4c2a;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    padding-top:30px;
+    gap:10px;
+    transition:0.35s ease;
+    z-index:1050;
+  }
+
+  .nav-links.show{
+    left:0;
+  }
+
+  .nav-links li{
+    width:100%;
+    text-align:center;
+  }
+
+  .nav-links li a{
+    display:block;
+    padding:14px 20px;
+    font-size:16px;
+  }
+}
 
 /* ── SOCIAL TOPBAR ── */
 #social-topbar {
