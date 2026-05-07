@@ -211,7 +211,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="nav-item" data-sec="tours"><i class="fas fa-mountain"></i>Tour Packages</div>
     <div class="nav-item" data-sec="gallery"><i class="fas fa-images"></i>Gallery Images</div>
     <div class="nav-item" data-sec="vehicles"><i class="fas fa-car"></i>Fleet / Vehicles</div>
-    <div class="nav-item" data-sec="testimonials"><i class="fas fa-star"></i>Testimonials</div>
     <div class="nav-sec">Leads & Bookings</div>
     <div class="nav-item" data-sec="bookings"><i class="fas fa-calendar-check"></i>Bookings</div>
     <div class="nav-item" data-sec="enquiries"><i class="fas fa-envelope"></i>Enquiries</div>
@@ -249,7 +248,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <div class="qa-btns">
         <button class="qa-btn" onclick="switchSec('tours')"><i class="fas fa-plus"></i> Add Tour</button>
         <button class="qa-btn" onclick="switchSec('vehicles')"><i class="fas fa-car"></i> Add Vehicle</button>
-        <button class="qa-btn" onclick="switchSec('testimonials')"><i class="fas fa-star"></i> Add Review</button>
         <button class="qa-btn" onclick="switchSec('gallery')"><i class="fas fa-images"></i> Add Photo</button>
         <button class="qa-btn" onclick="switchSec('enquiries')"><i class="fas fa-envelope"></i> View Enquiries</button>
         <a class="qa-btn" href="index.html" target="_blank"><i class="fas fa-eye"></i> View Website</a>
@@ -279,10 +277,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     </div>
 
     <!-- TESTIMONIALS -->
-    <div class="section-panel" id="sec-testimonials">
-      <div class="panel-header"><span class="panel-title">Testimonials <span id="tmCnt"></span></span><button class="btn-add" onclick="openTestiModal(null)"><i class="fas fa-plus"></i> Add Review</button></div>
-      <div class="table-wrap"><table class="admin-table"><thead><tr><th>Guest Name</th><th>Location</th><th>Rating</th><th>Message</th><th>Status</th><th>Actions</th></tr></thead><tbody id="testimonialsBody"><tr><td colspan="6" class="loading-td"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr></tbody></table></div>
-    </div>
 
     <!-- BOOKINGS -->
     <div class="section-panel" id="sec-bookings">
@@ -326,7 +320,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </div>
       <div class="settings-info">
         <strong><i class="fas fa-info-circle"></i> Firebase Project: sunway-kashmir</strong><br/><br/>
-        Firestore collections needed: <code>bookings</code> <code>enquiries</code> <code>car_bookings</code> <code>tours</code> <code>gallery</code> <code>vehicles</code> <code>testimonials</code> <code>settings</code><br/><br/>
+        Firestore collections needed: <code>bookings</code> <code>enquiries</code> <code>car_bookings</code> <code>tours</code> <code>gallery</code> <code>vehicles</code> <code>settings</code><br/><br/>
         Firestore Rules: <code>allow read, write: if request.auth != null;</code> for admin collections.<br/>
         Public can <code>create</code> on <code>enquiries</code> and <code>bookings</code>.<br/><br/>
         Auth: Enable <strong>Email/Password</strong> in Firebase Console → Authentication → Sign-in method.
@@ -431,24 +425,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </div>
 
 <!-- Testimonial Modal -->
-<div class="modal-ov" id="testiModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('testiModal')"><i class="fas fa-times"></i></button>
-    <h3 id="testiModalTitle">Add Testimonial</h3>
-    <input type="hidden" id="tmDocId"/>
-    <div class="mf-row">
-      <div class="mf"><label>Guest Name *</label><input id="tmName" placeholder="Rahul Kapoor"/></div>
-      <div class="mf"><label>Location</label><input id="tmLoc" placeholder="Delhi, India"/></div>
-    </div>
-    <div class="mf"><label>Star Rating (1–5)</label><input type="number" id="tmRating" min="1" max="5" value="5"/></div>
-    <div class="mf"><label>Review Message *</label><textarea id="tmMsg" rows="4" placeholder="Write the guest's review here…"></textarea></div>
-    <div class="mf"><label>Show on Website?</label><select id="tmApproved"><option value="true">Yes — Visible on site</option><option value="false">No — Hidden</option></select></div>
-    <div class="modal-foot">
-      <button class="btn-cancel" onclick="closeModal('testiModal')">Cancel</button>
-      <button class="btn-green" id="saveTestiBtn" onclick="saveTesti()"><i class="fas fa-save"></i> Save Review</button>
-    </div>
-  </div>
-</div>
 
 <!-- Record View Modal -->
 <div class="modal-ov" id="viewModal">
@@ -595,7 +571,7 @@ window.previewImg = function(inputId, previewId){
 function loadSec(sec){
   const map = {
     dashboard: loadDashboard, tours: loadTours, gallery: loadGallery,
-    vehicles: loadVehicles, testimonials: loadTestimonials,
+    vehicles: loadVehicles,
     bookings: loadBookings, enquiries: loadEnquiries,
     car_bookings: loadCarBookings
   };
@@ -841,84 +817,6 @@ window.saveVehicle = async function(){
 
 // ════════════════════════════════════════
 // TESTIMONIALS
-// ════════════════════════════════════════
-let testiCache = [];
-async function loadTestimonials(){
-  const tb = document.getElementById('testimonialsBody');
-  tb.innerHTML = '<tr><td colspan="6" class="loading-td"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr>';
-  try{
-    testiCache = sortByDate(await fetchAll('testimonials'));
-  } catch(e){
-    testiCache = [];
-    toast('Testimonials load error: ' + e.message, 'err');
-  }
-  document.getElementById('tmCnt').textContent = `(${testiCache.length})`;
-  if(!testiCache.length){
-    tb.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fas fa-star"></i><p>No reviews yet.</p><button class="btn-add" onclick="openTestiModal(null)"><i class="fas fa-plus"></i> Add First Review</button></div></td></tr>';
-    return;
-  }
-  tb.innerHTML = testiCache.map(t => `<tr>
-    <td style="font-weight:600">${t.name||'—'}</td>
-    <td style="color:var(--t2);font-size:12px">${t.location||'—'}</td>
-    <td style="color:#f59e0b;letter-spacing:2px;font-size:15px">${'★'.repeat(Math.min(parseInt(t.rating)||5,5))}</td>
-    <td style="color:var(--t2);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${t.message||''}">${t.message||'—'}</td>
-    <td>${t.approved !== false
-      ? '<span class="badge badge-confirmed">✓ Visible</span>'
-      : '<span class="badge badge-pending">Hidden</span>'}</td>
-    <td><div class="action-btns">
-      <button class="action-btn ${t.approved!==false?'btn-hide':'btn-approve'}"
-        onclick="toggleApprove('${t.id}',${t.approved===false})"
-        title="${t.approved!==false?'Hide from site':'Show on site'}">
-        <i class="fas ${t.approved!==false?'fa-eye-slash':'fa-eye'}"></i>
-      </button>
-      <button class="action-btn btn-edit" onclick="openTestiModal('${t.id}')" title="Edit"><i class="fas fa-edit"></i></button>
-      <button class="action-btn btn-del" onclick="delDoc('testimonials','${t.id}',loadTestimonials)" title="Delete"><i class="fas fa-trash"></i></button>
-    </div></td>
-  </tr>`).join('');
-}
-window.openTestiModal = function(id){
-  clearForm(['tmDocId','tmName','tmLoc','tmMsg']);
-  setVal('tmRating','5');
-  setVal('tmApproved','true');
-  document.getElementById('testiModalTitle').textContent = 'Add Testimonial';
-  if(id){
-    const t = testiCache.find(x => x.id === id);
-    if(!t) return;
-    setVal('tmDocId',id); setVal('tmName',t.name); setVal('tmLoc',t.location);
-    setVal('tmRating',t.rating||5); setVal('tmMsg',t.message);
-    setVal('tmApproved', String(t.approved !== false));
-    document.getElementById('testiModalTitle').textContent = 'Edit Testimonial';
-  }
-  document.getElementById('saveTestiBtn').innerHTML = '<i class="fas fa-save"></i> Save Review';
-  document.getElementById('saveTestiBtn').disabled = false;
-  openModal('testiModal');
-};
-window.saveTesti = async function(){
-  if(!fv('tmName') || !fv('tmMsg')){ toast('Name and review message are required','err'); return; }
-  const id = fv('tmDocId');
-  setSaving('saveTestiBtn', true);
-  const rating = Math.min(Math.max(parseInt(fv('tmRating'))||5, 1), 5);
-  const data = {
-    name: fv('tmName'), location: fv('tmLoc'), rating,
-    message: fv('tmMsg'), approved: fv('tmApproved') === 'true',
-    updatedAt: serverTimestamp()
-  };
-  try{
-    if(id) await updateDoc(doc(db,'testimonials',id), data);
-    else { data.createdAt = serverTimestamp(); await addDoc(collection(db,'testimonials'), data); }
-    toast(id ? 'Review updated!' : 'Review added!', 'ok');
-    closeModal('testiModal');
-    loadTestimonials();
-  } catch(e){ toast('Error saving review: ' + e.message, 'err'); }
-  setSaving('saveTestiBtn', false);
-};
-window.toggleApprove = async function(id, makeVisible){
-  try{
-    await updateDoc(doc(db,'testimonials',id), { approved: makeVisible, updatedAt: serverTimestamp() });
-    toast(makeVisible ? 'Review is now visible on site!' : 'Review hidden from site.', 'ok');
-    loadTestimonials();
-  } catch(e){ toast('Error: ' + e.message, 'err'); }
-};
 
 // ════════════════════════════════════════
 // BOOKINGS
