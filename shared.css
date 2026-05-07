@@ -142,13 +142,20 @@ button { cursor: pointer; border: none; background: none; }
   font-size: 30px; font-weight: 700; color: #4ade80; line-height: 1;
 }
 .logo-t { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: #fff; letter-spacing: .3px; }
-.logo-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  color: #ffffff; /* 🔥 important */
+.logo-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1;
 }
 
+.logo-main,
+.logo-sub{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:700;
+  letter-spacing:.3px;
+  color:#fff;
+  font-size:18px; /* same size */
+}
 /* Desktop nav links */
 .nav-links {
   display: flex; align-items: center; gap: 2px;
