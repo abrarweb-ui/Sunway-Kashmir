@@ -142,9 +142,9 @@ button { cursor: pointer; border: none; background: none; }
 .logo-t { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: #fff; letter-spacing: .3px; }
 .logo-text{
   font-family: 'Great Vibes', cursive;
-  font-size: 22px;
+  font-size: 12px;
   color: #fff;
-  font-weight: 400;
+  font-weight: 200;
   letter-spacing: 1px;
 }
 
