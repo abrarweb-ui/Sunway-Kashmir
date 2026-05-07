@@ -5,7 +5,7 @@
 // 🔥 REPLACE THESE WITH YOUR FIREBASE PROJECT DETAILS
 // Go to: https://console.firebase.google.com → Your Project → Project Settings → Web App
 const firebaseConfig = {
-apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
+ apiKey: "AIzaSyDKtDXC8LfERzHNYjykXjN5zNg5euRpUYQ",
   authDomain: "sunway-kashmir.firebaseapp.com",
   projectId: "sunway-kashmir",
   storageBucket: "sunway-kashmir.firebasestorage.app",
