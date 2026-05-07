@@ -581,7 +581,7 @@ function loadSec(sec){
 // ════════════════════════════════════════
 // DASHBOARD
 // ════════════════════════════════════════
-async function loadDashboard(){
+window.loadDashboard = async function(){
   for(const [col, elId] of [['bookings','cntB'],['enquiries','cntE'],['tours','cntT'],['gallery','cntG']]){
     try{
       const s = await getDocs(collection(db, col));
@@ -610,7 +610,7 @@ async function loadDashboard(){
 // TOURS
 // ════════════════════════════════════════
 let toursCache = [];
-async function loadTours(){
+window.loadTours = async function(){
   const tb = document.getElementById('toursBody');
   tb.innerHTML = '<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr>';
   try{
@@ -685,7 +685,7 @@ window.saveTour = async function(){
 // GALLERY
 // ════════════════════════════════════════
 let galleryCache = [];
-async function loadGallery(){
+window.loadGallery = async function(){
   const grid = document.getElementById('agGrid');
   grid.innerHTML = '<p style="padding:20px;color:var(--t2);font-size:13px"><i class="fas fa-spinner fa-spin"></i> Loading…</p>';
   try{
@@ -746,7 +746,7 @@ window.saveGallery = async function(){
 // VEHICLES / FLEET
 // ════════════════════════════════════════
 let vehiclesCache = [];
-async function loadVehicles(){
+window.loadVehicles = async function(){
   const tb = document.getElementById('vehiclesBody');
   tb.innerHTML = '<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr>';
   try{
@@ -822,7 +822,7 @@ window.saveVehicle = async function(){
 // BOOKINGS
 // ════════════════════════════════════════
 let bookingsCache = [];
-async function loadBookings(){
+window.loadBookings = async function(){
   const tb = document.getElementById('bookingsBody');
   tb.innerHTML = '<tr><td colspan="8" class="loading-td"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr>';
   try{
@@ -865,7 +865,7 @@ document.getElementById('bSearch').addEventListener('input', function(){
 // ENQUIRIES
 // ════════════════════════════════════════
 let enquiriesCache = [];
-async function loadEnquiries(){
+window.loadEnquiries = async function(){
   const tb = document.getElementById('enquiriesBody');
   tb.innerHTML = '<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr>';
   try{
@@ -907,7 +907,7 @@ document.getElementById('eSearch').addEventListener('input', function(){
 // CAR BOOKINGS
 // ════════════════════════════════════════
 let carCache = [];
-async function loadCarBookings(){
+window.loadCarBookings = async function(){
   const tb = document.getElementById('carBookingsBody');
   tb.innerHTML = '<tr><td colspan="7" class="loading-td"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr>';
   try{
@@ -947,12 +947,31 @@ window.updateStatus = async function(col, id, status){
   } catch(e){ toast('Error: ' + e.message, 'err'); }
 };
 window.delDoc = async function(col, id, reloadFn){
-  if(!confirm('Delete this record permanently? This cannot be undone.')) return;
+  console.log('Delete clicked:', { col, id, reloadFn: typeof reloadFn === 'function' ? reloadFn.name : reloadFn });
+  
+  if(!confirm('Delete this record permanently? This cannot be undone.')) {
+    console.log('Delete cancelled by user');
+    return;
+  }
+  
   try{
+    console.log('Attempting to delete from', col, 'with id', id);
     await deleteDoc(doc(db, col, id));
     toast('Record deleted.', 'ok');
-    reloadFn?.();
-  } catch(e){ toast('Delete failed: ' + e.message, 'err'); }
+    console.log('Delete successful, reloading...');
+    
+    // Handle both function reference and string function name
+    if(typeof reloadFn === 'function') {
+      reloadFn();
+    } else if(typeof reloadFn === 'string' && window[reloadFn]) {
+      window[reloadFn]();
+    } else if(reloadFn) {
+      console.warn('Reload function not found:', reloadFn);
+    }
+  } catch(e){ 
+    console.error('Delete error:', e);
+    toast('Delete failed: ' + e.message, 'err'); 
+  }
 };
 window.viewRecord = function(record){
   const skip = ['id'];
