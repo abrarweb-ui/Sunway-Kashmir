@@ -1,6 +1,7 @@
 /* =======================================================
    SUNWAY KASHMIR TOUR & TRAVELS — shared.css
    ======================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 :root {
   --deep-blue:   #0f4c2a;
   --blue:        #0f4c2a;
